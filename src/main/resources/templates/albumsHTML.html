@@ -5,12 +5,26 @@
     <title>albums</title>
 </head>
 <body>
-      <div th:each="album : ${albumArray}" >
+      <div th:each="album : ${AllAlbums}" >
         <img th:alt="${album.title}" th:src="${album.imageUrl}">
           <p th:text="${album.title}"></p>
           <p th:text="${album.artist}"></p>
           <p th:text="${album.songCount}"></p>
           <p th:text="${album.length}"></p>
       </div>
+
+      <form action="#" th:action="@{/albums}" method="post" th:object="${album}">
+          <label>Album Title:</label>
+          <input type="text" name="title" th:field="*{title}" required/>
+          <label>Artist:</label>
+          <input type="text" name="artist" th:field="*{artist}" required/>
+          <label>Song Count:</label>
+          <input type="number" name="songCount" th:field="*{songCount}" required />
+          <label>Length:</label>
+          <input type="text" name="length" th:field="*{length}" required/>
+          <label>Image URL:</label>
+          <input type="url" name="imageUrl" th:field="*{imageUrl}" required />
+          <input type="submit" value="Submit"/>
+      </form>
 </body>
 </html>
