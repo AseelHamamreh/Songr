@@ -11,6 +11,7 @@
           <p th:text="${album.artist}"></p>
           <p th:text="${album.songCount}"></p>
           <p th:text="${album.length}"></p>
+          <a th:href="'song/'+ ${album.id}">Show Album's Songs Or Add A New Song</a>
       </div>
 
       <form action="#" th:action="@{/albums}" method="post" th:object="${album}">
