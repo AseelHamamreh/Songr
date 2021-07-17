@@ -1,20 +1,16 @@
 package com.songrApp.songr.AlbumPackage;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.songrApp.songr.SongPackage.Song;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
 
 @Entity
 public class Album {
     @Id
-    @SequenceGenerator(
-            name = "student_sequence",
-            sequenceName = "student_sequence",
-            allocationSize = 1
-    )
-
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     Long id;
     String title;
@@ -22,6 +18,10 @@ public class Album {
     int songCount;
     String length;
     String imageUrl;
+
+    @OneToMany(mappedBy = "album")
+    private List<Song> songs;
+
 
     public Album() {
     }
@@ -89,5 +89,9 @@ public class Album {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public List<Song> getSongs() {
+        return songs;
     }
 }
